@@ -1,0 +1,134 @@
+:root {
+    --bg: #2a1f2d;
+    --ink: #f3e6e8;
+    --muted: #b9a3ad;
+    --accent: #d9a5b3;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, #3a2a3e, var(--bg) 70%);
+    color: var(--ink);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: max(48px, env(safe-area-inset-top)) 24px max(48px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
+    line-height: 1.15;
+    margin: 0 0 12px;
+}
+
+.sub {
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6
+}
+
+.stickers {
+    display: flex;
+    gap: 14px;
+    margin: 32px 0
+}
+
+.stickers span {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .15);
+}
+
+.message {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    line-height: 1.4;
+    min-height: 5.6em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.message.show {
+    opacity: 1
+}
+
+button {
+    margin-top: 28px;
+    padding: 12px 28px;
+    font: 500 1rem 'DM Sans', sans-serif;
+    color: var(--bg);
+    background: var(--accent);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform .15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px)
+}
+
+button:active {
+    transform: translateY(1px)
+}
+
+button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px
+}
+
+.petal {
+    position: fixed;
+    top: -30px;
+    font-size: 1.3rem;
+    opacity: .85;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(200deg);
+        opacity: 0
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .message {
+        transition: none
+    }
+    .petal {
+        display: none
+    }
+}
